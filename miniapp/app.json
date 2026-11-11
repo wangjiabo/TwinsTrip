@@ -22,27 +22,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "态势",
-        "iconPath": "assets/tab_home.png",
-        "selectedIconPath": "assets/tab_home_active.png"
+        "text": "态势"
       },
       {
         "pagePath": "pages/itinerary/itinerary",
-        "text": "行程",
-        "iconPath": "assets/tab_route.png",
-        "selectedIconPath": "assets/tab_route_active.png"
+        "text": "行程"
       },
       {
         "pagePath": "pages/checklist/checklist",
-        "text": "清单",
-        "iconPath": "assets/tab_list.png",
-        "selectedIconPath": "assets/tab_list_active.png"
+        "text": "清单"
       },
       {
         "pagePath": "pages/map/map",
-        "text": "地图",
-        "iconPath": "assets/tab_map.png",
-        "selectedIconPath": "assets/tab_map_active.png"
+        "text": "地图"
       }
     ]
   },
