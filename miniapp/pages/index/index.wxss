@@ -1,0 +1,164 @@
+/* pages/index/index.wxss */
+
+.container {
+  padding: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 紧急提醒横幅 */
+.reminder-banner {
+  background: linear-gradient(135deg, #e94560, #c0392b);
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx 32rpx;
+  margin: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 24rpx rgba(233, 69, 96, 0.3);
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4rpx); }
+  75% { transform: translateX(4rpx); }
+}
+
+.reminder-banner__icon { font-size: 48rpx; margin-right: 16rpx; }
+.reminder-banner__content { flex: 1; }
+.reminder-banner__text { display: block; font-size: 28rpx; margin-bottom: 4rpx; }
+
+/* 行程进度 */
+.trip-overview {
+  border-left: 8rpx solid var(--tt-accent);
+}
+.trip-overview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.trip-overview__title { font-size: 34rpx; font-weight: bold; }
+.trip-overview__arrow { color: #ccc; font-size: 40rpx; }
+.progress-bar {
+  height: 16rpx;
+  background: var(--tt-border);
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--tt-primary), #ff6b6b);
+  border-radius: 8rpx;
+  transition: width 0.5s;
+}
+.progress-text { font-size: 24rpx; color: var(--tt-text-light); margin-top: 8rpx; }
+
+/* 双娃状态 */
+.babies-row {
+  display: flex;
+  gap: 16rpx;
+}
+.baby-card {
+  flex: 1;
+  margin: 0 0 16rpx 0;
+  border-top: 6rpx solid var(--tt-primary);
+}
+.baby-card__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.baby-card__avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--tt-secondary), var(--tt-accent));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 16rpx;
+}
+.baby-card__info { flex: 1; }
+.baby-card__name { font-size: 32rpx; font-weight: bold; display: block; }
+.baby-card__state {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: var(--tt-text-light);
+  margin-top: 4rpx;
+  gap: 8rpx;
+}
+.baby-card__metric {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  margin-bottom: 8rpx;
+}
+.baby-card__metric .label { color: var(--tt-text-light); }
+.baby-card__metric .value { font-weight: 500; }
+.baby-card__metric .value.urgent { color: var(--tt-danger); font-weight: bold; }
+
+/* 单手友好操作按钮 — 大按钮 */
+.baby-card__actions {
+  display: flex;
+  gap: 8rpx;
+  margin-top: 20rpx;
+}
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  font-size: 26rpx;
+  border-radius: 12rpx;
+  padding: 0;
+  margin: 0;
+  line-height: 88rpx;
+}
+.action-btn--feed { background: #3498db; color: #fff; }
+.action-btn--poop { background: #9b59b6; color: #fff; }
+.action-btn--nap { background: #34495e; color: #fff; }
+
+/* 紧急事件面板 */
+.emergency-panel__title {
+  font-size: 30rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.emergency-panel__grid {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.emergency-panel__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: var(--tt-text-light);
+  text-align: center;
+}
+.tt-emergency-btn--red { background: #e94560; }
+.tt-emergency-btn--yellow { background: #f39c12; }
+.tt-emergency-btn--blue { background: #2ecc71; }
+.tt-emergency-btn--purple { background: #9b59b6; }
+
+/* 附近资源 */
+.nearest-resources__title {
+  font-size: 30rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.resource-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--tt-border);
+}
+.resource-item:last-child { border-bottom: none; }
+.resource-item__icon { font-size: 40rpx; margin-right: 16rpx; }
+.resource-item__info { flex: 1; }
+.resource-item__name { font-size: 28rpx; font-weight: 500; display: block; }
+.resource-item__dist { font-size: 24rpx; color: var(--tt-text-light); }

@@ -1,0 +1,71 @@
+<!--pages/checklist/checklist.wxml—智能物品清单页-->
+
+<view class="container">
+  <!-- === 顶部进度 === -->
+  <view class="progress-header">
+    <view class="progress-circle">
+      <text class="progress-circle__num">{{percentage}}</text>
+      <text class="progress-circle__unit">%</text>
+    </view>
+    <view class="progress-info">
+      <text class="progress-info__title">打包进度</text>
+      <text class="progress-info__detail">已完成 {{totalPacked}} / {{totalMandatory}} 项必带</text>
+    </view>
+    <button class="pack-all-btn" bindtap="onPackAll">一键打包</button>
+  </view>
+
+  <!-- === 出行设置 === -->
+  <view class="settings tt-card">
+    <view class="settings__row">
+      <text class="settings__label">👶 宝宝数量</text>
+      <text class="settings__value">{{babyCount}} 个</text>
+    </view>
+    <view class="settings__row">
+      <text class="settings__label">⏰ 预计时长</text>
+      <input type="digit" value="{{tripHours}}" bindblur="onHoursChange" class="settings__input" />
+      <text class="settings__unit">小时</text>
+    </view>
+    <view class="settings__hint">
+      系统按 {{tripHours <= 2 ? '1.1' : tripHours <= 4 ? '1.3' : tripHours <= 8 ? '1.5' : '1.8'}}x 冗余系数计算带量
+    </view>
+  </view>
+
+  <!-- === 忘记就完蛋警示 === -->
+  <view wx:if="{{forgettingWarn.length > 0}}" class="forget-warn tt-forget-warn">
+    <text class="forget-warn__title">🚨 忘了就完蛋！</text>
+    <view class="forget-warn__list">
+      <block wx:for="{{forgettingWarn}}" wx:key="id">
+        <text class="forget-warn__item {{item.packed ? 'done' : ''}}">{{item.packed ? '✅' : '❌'}} {{item.name}} ×{{item.suggested_qty}}{{item.unit}}</text>
+      </block>
+    </view>
+  </view>
+
+  <!-- === 分组清单 === -->
+  <block wx:for="{{groupedItems}}" wx:for-item="group" wx:key="category">
+    <view class="tt-card group-card">
+      <text class="group-card__title">{{group.name}}</text>
+      <view class="group-card__items">
+        <view wx:for="{{group.items}}" wx:key="id" wx:for-item="item"
+              class="list-item {{item.packed ? 'list-item--packed' : ''}}">
+          <view class="list-item__checkbox {{item.packed ? 'checked' : ''}}"
+                data-id="{{item.id}}" bindtap="onTogglePack">
+            <text wx:if="{{item.packed}}">✓</text>
+          </view>
+          <view class="list-item__info">
+            <view class="list-item__main">
+              <text class="list-item__name">{{item.name}}</text>
+              <view wx:if="{{item.mandatory}}" class="tt-mandatory-tag">必带</view>
+            </view>
+            <view wx:if="{{item.notes}}" class="list-item__notes">{{item.notes}}</view>
+          </view>
+          <view class="list-item__qty">
+            <text class="list-item__qty-num">{{item.suggested_qty}}</text>
+            <text class="list-item__qty-unit">{{item.unit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="tt-safe-area-bottom"></view>
+</view>

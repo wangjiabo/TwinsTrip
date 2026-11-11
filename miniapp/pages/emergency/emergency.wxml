@@ -1,0 +1,78 @@
+<!--pages/emergency/emergency.wxml—突发事件处置页-->
+
+<view class="container">
+  <!-- === 事件类型快速切换 === -->
+  <view class="event-selector">
+    <view class="event-chip {{eventType === 'poop' ? 'active' : ''}}" data-type="poop" bindtap="onSwitchEvent">🔴 拉臭臭</view>
+    <view class="event-chip {{eventType === 'hungry' ? 'active' : ''}}" data-type="hungry" bindtap="onSwitchEvent">🟡 饿了</view>
+    <view class="event-chip {{eventType === 'sleepy' ? 'active' : ''}}" data-type="sleepy" bindtap="onSwitchEvent">🟢 困了</view>
+    <view class="event-chip {{eventType === 'other' ? 'active' : ''}}" data-type="other" bindtap="onSwitchEvent">🟣 其他</view>
+  </view>
+
+  <!-- === 当前事件状态 === -->
+  <view class="event-status" style="background: {{eventInfo.color}}20;">
+    <view class="event-status__icon">{{eventInfo.icon}}</view>
+    <view class="event-status__content">
+      <text class="event-status__label">当前事件</text>
+      <text class="event-status__name">{{eventInfo.label}}</text>
+    </view>
+    <text class="event-status__timer">⏱️ 已持续 -- 分钟</text>
+  </view>
+
+  <!-- === 最近资源点列表 === -->
+  <view class="resources-section tt-card">
+    <text class="section-title">📍 最近的可用地点</text>
+    <block wx:for="{{resources}}" wx:key="id">
+      <view class="resource-item" data-resource="{{item}}" bindtap="onNavigate">
+        <view class="resource-item__main">
+          <text class="resource-item__name">{{item.name}}</text>
+          <text class="resource-item__address">{{item.address}}</text>
+        </view>
+        <view class="resource-item__meta">
+          <text class="resource-item__dist">{{item.distance}} km</text>
+          <text class="resource-item__time">
+            🚶 {{item.travelTime}} 分钟
+          </text>
+        </view>
+        <text class="resource-item__nav">›</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- === 应急联系卡 === -->
+  <view class="emergency-card tt-card">
+    <text class="section-title">📞 紧急联系</text>
+    <view class="contact-row">
+      <text class="contact-row__icon">🏥</text>
+      <view class="contact-row__content">
+        <text class="contact-row__name">最近社区卫生服务中心</text>
+        <text class="contact-row__phone">电话：010-XXXX-XXXX</text>
+      </view>
+      <button class="contact-row__call" size="mini">拨打</button>
+    </view>
+    <view class="contact-row">
+      <text class="contact-row__icon">💊</text>
+      <view class="contact-row__content">
+        <text class="contact-row__name">24 小时大药房</text>
+        <text class="contact-row__phone">电话：010-XXXX-XXXX</text>
+      </view>
+      <button class="contact-row__call" size="mini">拨打</button>
+    </view>
+    <view class="contact-row contact-row--primary">
+      <text class="contact-row__icon">🚑</text>
+      <view class="contact-row__content">
+        <text class="contact-row__name">急救电话</text>
+        <text class="contact-row__phone">120</text>
+      </view>
+      <button class="contact-row__call contact-row__call--primary" size="mini">拨打</button>
+    </view>
+  </view>
+
+  <!-- === 操作按钮 === -->
+  <view class="action-buttons">
+    <button class="action-btn action-btn--secondary" bindtap="onShowDowngradePlan">📋 行程降级预案</button>
+    <button class="action-btn action-btn--primary" bindtap="onSubmitReport">📝 提交情况报告</button>
+  </view>
+
+  <view class="tt-safe-area-bottom"></view>
+</view>

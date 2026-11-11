@@ -1,0 +1,55 @@
+<!--pages/map/map.wxml—态势感知地图页-->
+
+<view class="container">
+  <!-- 地图 -->
+  <map
+    id="twinmap"
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    polyline="{{showRoute ? routePolyline : []}}"
+    show-location="true"
+    enable-zoom="true"
+    enable-rotate="false"
+  ></map>
+
+  <!-- === 雷达式紧急提醒 === -->
+  <view wx:if="{{nearestResource}}" class="radar-panel">
+    <view class="radar-panel__indicator">
+      <view class="radar-pulse"></view>
+      <view class="radar-dot"></view>
+    </view>
+    <view class="radar-panel__content">
+      <text class="radar-panel__label">距离下次喂奶还有</text>
+      <text class="radar-panel__time">{{nearestResource.minsToNextFeed}} 分钟</text>
+      <text class="radar-panel__dist">最近喂奶点 {{nearestResource.distance}} · 预计 {{nearestResource.eta}}</text>
+    </view>
+    <button class="radar-panel__nav" size="mini" bindtap="onNavigateNearest">🚗 导航</button>
+  </view>
+
+  <!-- === 资源点筛选 === -->
+  <view class="filter-bar">
+    <view class="filter-item {{resourceFilters.maternal ? 'on' : ''}}" data-key="maternal" bindtap="onFilterToggle">
+      <text>🚼</text> 母婴室
+    </view>
+    <view class="filter-item {{resourceFilters.feed ? 'on' : ''}}" data-key="feed" bindtap="onFilterToggle">
+      <text>🍼</text> 喂奶点
+    </view>
+    <view class="filter-item {{resourceFilters.pharmacy ? 'on' : ''}}" data-key="pharmacy" bindtap="onFilterToggle">
+      <text>💊</text> 药店
+    </view>
+    <view class="filter-item {{resourceFilters.hospital ? 'on' : ''}}" data-key="hospital" bindtap="onFilterToggle">
+      <text>🏥</text> 医院
+    </view>
+  </view>
+
+  <!-- === 右下角操作 === -->
+  <view class="float-actions">
+    <view class="float-btn" bindtap="onMoveToMe">📍 定位</view>
+    <view class="float-btn {{showRoute ? 'on' : ''}}" bindtap="onToggleRoute">
+      🛣️ 路线
+    </view>
+  </view>
+</view>

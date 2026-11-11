@@ -1,0 +1,89 @@
+/* pages/emergency/emergency.wxss */
+
+.event-selector {
+  display: flex;
+  gap: 12rpx;
+  padding: 16rpx 24rpx;
+  overflow-x: auto;
+}
+.event-chip {
+  flex-shrink: 0;
+  padding: 16rpx 24rpx;
+  border-radius: 32rpx;
+  background: #f0f0f0;
+  font-size: 26rpx;
+}
+.event-chip.active {
+  background: var(--tt-secondary);
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(22, 33, 62, 0.3);
+}
+
+.event-status {
+  display: flex;
+  align-items: center;
+  margin: 24rpx;
+  padding: 24rpx 32rpx;
+  border-radius: 16rpx;
+}
+.event-status__icon {
+  font-size: 64rpx;
+  margin-right: 24rpx;
+}
+.event-status__content { flex: 1; }
+.event-status__label { font-size: 22rpx; color: var(--tt-text-light); display: block; }
+.event-status__name { font-size: 34rpx; font-weight: bold; color: var(--tt-text); }
+.event-status__timer { font-size: 24rpx; color: var(--tt-text-light); }
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--tt-border);
+}
+.resource-item:last-child { border-bottom: none; }
+.resource-item__main { flex: 1; }
+.resource-item__name { font-size: 30rpx; font-weight: 500; display: block; }
+.resource-item__address { font-size: 22rpx; color: var(--tt-text-light); }
+.resource-item__meta { text-align: right; margin-right: 12rpx; }
+.resource-item__dist { font-size: 32rpx; font-weight: bold; color: var(--tt-primary); display: block; }
+.resource-item__time { font-size: 22rpx; color: var(--tt-text-light); }
+.resource-item__nav { font-size: 48rpx; color: #ccc; }
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--tt-border);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row__icon { font-size: 40rpx; margin-right: 16rpx; }
+.contact-row__content { flex: 1; }
+.contact-row__name { font-size: 28rpx; font-weight: 500; display: block; }
+.contact-row__phone { font-size: 24rpx; color: var(--tt-text-light); }
+.contact-row--primary { background: rgba(233, 69, 96, 0.05); border-radius: 8rpx; padding: 16rpx; margin: 8rpx -16rpx; }
+.contact-row__call { font-size: 24rpx; background: var(--tt-secondary); color: #fff; }
+.contact-row__call--primary { background: var(--tt-danger); }
+
+.action-buttons {
+  display: flex;
+  gap: 16rpx;
+  margin: 24rpx;
+}
+.action-btn {
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  margin: 0;
+}
+.action-btn--primary { background: var(--tt-primary); color: #fff; }
+.action-btn--secondary { background: #fff; color: var(--tt-secondary); border: 2rpx solid var(--tt-secondary); }

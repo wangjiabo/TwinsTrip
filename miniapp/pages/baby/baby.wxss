@@ -1,0 +1,113 @@
+/* pages/baby/baby.wxss */
+
+.baby-switcher {
+  display: flex;
+  gap: 16rpx;
+  padding: 16rpx 24rpx;
+}
+.baby-chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx 24rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
+  border: 3rpx solid transparent;
+  transition: all 0.2s;
+}
+.baby-chip.active {
+  border-color: var(--tt-primary);
+  box-shadow: 0 4rpx 16rpx rgba(233, 69, 96, 0.2);
+}
+.baby-chip__avatar {
+  font-size: 48rpx;
+  margin-right: 16rpx;
+}
+.baby-chip__info { flex: 1; }
+.baby-chip__name { font-size: 30rpx; font-weight: bold; display: block; }
+.baby-chip__age { font-size: 22rpx; color: var(--tt-text-light); }
+
+.baby-card__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.baby-card__name { font-size: 36rpx; font-weight: bold; }
+.baby-card__gender {
+  font-size: 24rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  background: var(--tt-secondary);
+  color: #fff;
+}
+.baby-card__stats {
+  display: flex;
+  gap: 24rpx;
+}
+.stat-item {
+  flex: 1;
+  text-align: center;
+  background: #f8f9fa;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+.stat-item__label {
+  font-size: 22rpx;
+  color: var(--tt-text-light);
+  display: block;
+  margin-bottom: 8rpx;
+}
+.stat-item__value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--tt-secondary);
+}
+.stat-item__unit { font-size: 24rpx; color: var(--tt-text-light); }
+
+.baby-card__allergies {
+  margin-top: 20rpx;
+  padding: 16rpx;
+  background: rgba(233, 69, 96, 0.1);
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  color: var(--tt-danger);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.section-header__title { font-size: 30rpx; font-weight: bold; }
+.section-header__edit {
+  font-size: 24rpx;
+  color: var(--tt-accent);
+  padding: 8rpx 16rpx;
+  background: #f8f9fa;
+  border-radius: 8rpx;
+}
+
+.routine-timeline { padding-left: 16rpx; }
+.routine-item {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+  position: relative;
+}
+.routine-item__dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--tt-accent);
+  margin-right: 16rpx;
+}
+.routine-item__content { display: flex; align-items: center; gap: 12rpx; }
+.routine-item__icon { font-size: 28rpx; }
+.routine-item__event { font-size: 28rpx; flex: 1; }
+.routine-item__time {
+  font-size: 24rpx;
+  color: var(--tt-text-light);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,117 @@
+/* pages/itinerary/itinerary.wxss */
+
+.conflict-banner {
+  display: flex;
+  align-items: center;
+  background: #fff3cd;
+  border: 2rpx solid #ffc107;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin: 24rpx;
+}
+.conflict-banner__icon { font-size: 36rpx; margin-right: 12rpx; }
+.conflict-banner__text { flex: 1; font-size: 26rpx; color: #856404; }
+.conflict-banner__btn {
+  font-size: 24rpx;
+  padding: 0 20rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  background: #ffc107;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.timeline__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.timeline__date { font-size: 32rpx; font-weight: bold; }
+.add-node-btn {
+  font-size: 24rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 24rpx;
+  background: var(--tt-secondary);
+  color: #fff;
+  margin: 0;
+  border-radius: 28rpx;
+}
+
+.node {
+  display: flex;
+  position: relative;
+  padding-bottom: 32rpx;
+}
+.node:last-child { padding-bottom: 0; }
+.node--conflict .node__body {
+  border: 2rpx solid #ffc107;
+  background: #fff9e6;
+}
+
+.node__connector {
+  position: absolute;
+  left: 74rpx;
+  top: 100rpx;
+  width: 4rpx;
+  bottom: 0;
+  background: var(--tt-border);
+}
+
+.node__time {
+  width: 140rpx;
+  padding-top: 12rpx;
+  font-size: 22rpx;
+  color: var(--tt-text-light);
+  text-align: right;
+  padding-right: 20rpx;
+}
+.node__time-start { font-size: 26rpx; color: var(--tt-text); font-weight: 500; display: block; }
+.node__time-end { display: block; margin-top: 4rpx; }
+
+.node__body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  min-height: 80rpx;
+}
+.node__type-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+  width: 56rpx;
+  text-align: center;
+}
+.node__content { flex: 1; }
+.node__title { font-size: 30rpx; font-weight: 500; display: block; }
+.node__meta { font-size: 22rpx; color: var(--tt-text-light); margin-top: 4rpx; }
+.node__conflict {
+  font-size: 22rpx;
+  color: #856404;
+  background: #fff3cd;
+  padding: 6rpx 12rpx;
+  border-radius: 6rpx;
+  margin-top: 8rpx;
+}
+.node__status { font-size: 36rpx; }
+
+/* 宝宝作息参考 */
+.routines__title { font-size: 30rpx; font-weight: bold; display: block; margin-bottom: 16rpx; }
+.routine-row {
+  display: flex;
+  margin-bottom: 12rpx;
+  font-size: 24rpx;
+}
+.routine-row__name {
+  width: 80rpx;
+  font-weight: bold;
+  color: var(--tt-secondary);
+}
+.routine-row__schedule {
+  flex: 1;
+  color: var(--tt-text-light);
+  font-size: 22rpx;
+}

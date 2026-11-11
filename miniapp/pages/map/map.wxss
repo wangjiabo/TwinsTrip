@@ -1,0 +1,95 @@
+/* pages/map/map.wxss */
+
+.container { position: relative; height: 100vh; width: 100%; }
+.map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* 雷达面板 */
+.radar-panel {
+  position: absolute;
+  top: 24rpx;
+  left: 24rpx;
+  right: 24rpx;
+  background: rgba(255,255,255,0.95);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 32rpx rgba(0,0,0,0.15);
+  backdrop-filter: blur(8px);
+}
+.radar-panel__indicator {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  position: relative;
+}
+.radar-pulse {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 4rpx solid var(--tt-primary);
+  opacity: 0.4;
+  animation: radar-pulse 2s infinite;
+}
+.radar-dot {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 24rpx; height: 24rpx;
+  background: var(--tt-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes radar-pulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.radar-panel__content { flex: 1; }
+.radar-panel__label { font-size: 22rpx; color: var(--tt-text-light); display: block; }
+.radar-panel__time { font-size: 40rpx; font-weight: bold; color: var(--tt-primary); display: block; }
+.radar-panel__dist { font-size: 22rpx; color: var(--tt-text-light); }
+.radar-panel__nav {
+  background: var(--tt-primary);
+  color: #fff;
+  font-size: 24rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  position: absolute;
+  bottom: 200rpx;
+  left: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.filter-item {
+  background: rgba(255,255,255,0.95);
+  padding: 16rpx 20rpx;
+  border-radius: 32rpx;
+  font-size: 22rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.filter-item.on { opacity: 1; background: var(--tt-secondary); color: #fff; }
+
+/* 浮动操作按钮 */
+.float-actions {
+  position: absolute;
+  right: 24rpx;
+  bottom: 200rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.float-btn {
+  background: rgba(255,255,255,0.95);
+  padding: 20rpx 24rpx;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.15);
+}
+.float-btn.on { background: var(--tt-secondary); color: #fff; }

@@ -1,0 +1,114 @@
+<!--pages/index/index.wxml—首页态势感知总览-->
+
+<view class="container">
+  <!-- === 顶部紧急提醒 === -->
+  <view wx:if="{{reminders.length > 0}}" class="reminder-banner">
+    <view class="reminder-banner__icon">⚡</view>
+    <view class="reminder-banner__content">
+      <block wx:for="{{reminders}}" wx:key="text">
+        <text class="reminder-banner__text {{item.level === 'urgent' ? 'urgent' : 'warn'}}">
+          {{item.text}}
+        </text>
+      </block>
+    </view>
+  </view>
+
+  <!-- === 行程进度 === -->
+  <view wx:if="{{currentTrip}}" class="tt-card trip-overview" bindtap="onViewTrip">
+    <view class="trip-overview__header">
+      <text class="trip-overview__title">{{currentTrip.title}}</text>
+      <text class="trip-overview__arrow">›</text>
+    </view>
+    <view class="trip-overview__progress">
+      <view class="progress-bar">
+        <view class="progress-bar__fill" style="width: {{currentTrip.progress || 0}}%"></view>
+      </view>
+      <text class="progress-text">{{currentTrip.completedNodes || 0}}/{{currentTrip.totalNodes || 0}} 节点完成</text>
+    </view>
+  </view>
+
+  <!-- === 双娃状态卡片 === -->
+  <view class="babies-row">
+    <view wx:for="{{babies}}" wx:key="id" class="baby-card tt-card">
+      <view class="baby-card__header">
+        <view class="baby-card__avatar">{{item.name[0]}}</view>
+        <view class="baby-card__info">
+          <text class="baby-card__name">{{item.name}}</text>
+          <view class="baby-card__state">
+            <view class="tt-status-dot {{item.feedUrgency === 'urgent' ? 'tt-status-dot--urgent' : item.feedUrgency === 'warn' ? 'tt-status-dot--warn' : 'tt-status-dot--normal'}}"></view>
+            <text>{{item.currentState === 'sleeping' ? '💤 睡觉中' : item.currentState === 'eating' ? '🍼 喂奶中' : '👀 清醒'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 上次喂奶 -->
+      <view class="baby-card__metric">
+        <text class="label">上次喂奶</text>
+        <text class="value {{item.feedUrgency === 'urgent' ? 'urgent' : ''}}">
+          {{item.minsSinceFeed != null ? item.minsSinceFeed + ' 分钟前' : '未记录'}}
+        </text>
+      </view>
+
+      <!-- 上次 nap -->
+      <view class="baby-card__metric">
+        <text class="label">上次 nap</text>
+        <text class="value">{{item.minsSinceNap != null ? item.minsSinceNap + ' 分钟前' : '未记录'}}</text>
+      </view>
+
+      <!-- 快速操作按钮（单手友好 — 大按钮） -->
+      <view class="baby-card__actions">
+        <button class="action-btn action-btn--feed" data-babyid="{{item.id}}" bindtap="onMarkFeed">🍼 喂奶</button>
+        <button class="action-btn action-btn--poop" data-babyid="{{item.id}}" bindtap="onMarkPoop">💩 拉臭臭</button>
+        <button class="action-btn action-btn--nap" data-babyid="{{item.id}}" bindtap="onMarkNapStart">😴 nap</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- === 紧急事件快速触发 === -->
+  <view class="emergency-panel tt-card">
+    <text class="emergency-panel__title">🚨 突发事件</text>
+    <view class="emergency-panel__grid">
+      <view class="emergency-btn tt-emergency-btn tt-emergency-btn--red" data-type="poop" bindtap="onEmergencyTap">🔴</view>
+      <view class="emergency-btn tt-emergency-btn tt-emergency-btn--yellow" data-type="hungry" bindtap="onEmergencyTap">🟡</view>
+      <view class="emergency-btn tt-emergency-btn tt-emergency-btn--blue" data-type="sleepy" bindtap="onEmergencyTap">🟢</view>
+      <view class="emergency-btn tt-emergency-btn tt-emergency-btn--purple" data-type="other" bindtap="onEmergencyTap">🟣</view>
+    </view>
+    <view class="emergency-panel__labels">
+      <text>拉臭臭</text>
+      <text>饿了</text>
+      <text>困了</text>
+      <text>其他</text>
+    </view>
+  </view>
+
+  <!-- === 最近资源点 === -->
+  <view class="nearest-resources tt-card">
+    <text class="nearest-resources__title">📍 附近资源</text>
+    <view class="nearest-resources__list">
+      <!-- TODO: 接入后端/地图 API -->
+      <view class="resource-item">
+        <text class="resource-item__icon">🚼</text>
+        <view class="resource-item__info">
+          <text class="resource-item__name">母婴室（便利店）</text>
+          <text class="resource-item__dist">0.3 km · 步行 5 分钟</text>
+        </view>
+      </view>
+      <view class="resource-item">
+        <text class="resource-item__icon">🍼</text>
+        <view class="resource-item__info">
+          <text class="resource-item__name">咖啡厅（可喂奶）</text>
+          <text class="resource-item__dist">0.8 km · 步行 12 分钟</text>
+        </view>
+      </view>
+      <view class="resource-item">
+        <text class="resource-item__icon">🏥</text>
+        <view class="resource-item__info">
+          <text class="resource-item__name">社区卫生服务中心</text>
+          <text class="resource-item__dist">1.5 km · 驾车 5 分钟</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tt-safe-area-bottom"></view>
+</view>

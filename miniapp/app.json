@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/itinerary/itinerary",
+    "pages/checklist/checklist",
+    "pages/emergency/emergency",
+    "pages/map/map",
+    "pages/baby/baby"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarTitleText": "TwinTrip · 带娃出游指挥中心",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f9fa"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#e94560",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "态势",
+        "iconPath": "assets/tab_home.png",
+        "selectedIconPath": "assets/tab_home_active.png"
+      },
+      {
+        "pagePath": "pages/itinerary/itinerary",
+        "text": "行程",
+        "iconPath": "assets/tab_route.png",
+        "selectedIconPath": "assets/tab_route_active.png"
+      },
+      {
+        "pagePath": "pages/checklist/checklist",
+        "text": "清单",
+        "iconPath": "assets/tab_list.png",
+        "selectedIconPath": "assets/tab_list_active.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "assets/tab_map.png",
+        "selectedIconPath": "assets/tab_map_active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于显示您的位置和附近的母婴室、儿科等资源点"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

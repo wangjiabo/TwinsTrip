@@ -1,0 +1,61 @@
+<!--pages/baby/baby.wxml—宝宝档案页-->
+
+<view class="container">
+  <!-- === 双宝宝切换 === -->
+  <view class="baby-switcher">
+    <view wx:for="{{babies}}" wx:key="id" wx:for-item="baby"
+          class="baby-chip {{selectedBabyIndex === index ? 'active' : ''}}"
+          data-index="{{index}}" bindtap="onSelectBaby">
+      <view class="baby-chip__avatar">{{baby.gender === 'M' ? '👦' : '👧'}}</view>
+      <view class="baby-chip__info">
+        <text class="baby-chip__name">{{baby.name}}</text>
+        <text class="baby-chip__age">{{calcMonths(baby.birthday)}} 个月</text>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{babies.length > 0}}">
+    <view class="tt-card baby-card">
+      <view class="baby-card__header">
+        <text class="baby-card__name">{{babies[selectedBabyIndex].name}}</text>
+        <text class="baby-card__gender">{{babies[selectedBabyIndex].gender === 'M' ? '男' : '女'}}</text>
+      </view>
+      <view class="baby-card__stats">
+        <view class="stat-item">
+          <text class="stat-item__label">身高</text>
+          <text class="stat-item__value">{{babies[selectedBabyIndex].height}} <text class="stat-item__unit">cm</text></text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-item__label">体重</text>
+          <text class="stat-item__value">{{babies[selectedBabyIndex].weight}} <text class="stat-item__unit">kg</text></text>
+        </view>
+      </view>
+      <view wx:if="{{babies[selectedBabyIndex].allergies.length > 0}}" class="baby-card__allergies">
+        <text class="baby-card__allergies-title">⚠️ 过敏史：</text>
+        <text class="baby-card__allergies-list">{{babies[selectedBabyIndex].allergies}}</text>
+      </view>
+    </view>
+
+    <!-- === 作息模板 === -->
+    <view class="tt-card">
+      <view class="section-header">
+        <text class="section-header__title">⏰ 今日作息模板</text>
+        <text class="section-header__edit" bindtap="onEditRoutine">编辑</text>
+      </view>
+      <view class="routine-timeline">
+        <block wx:for="{{routines}}" wx:key="event">
+          <view class="routine-item">
+            <view class="routine-item__dot"></view>
+            <view class="routine-item__content">
+              <text class="routine-item__icon">{{item.icon}}</text>
+              <text class="routine-item__event">{{item.event}}</text>
+              <text class="routine-item__time">{{item.time}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+
+  <view class="tt-safe-area-bottom"></view>
+</view>

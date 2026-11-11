@@ -1,0 +1,71 @@
+<!--pages/itinerary/itinerary.wxml—行程规划页-->
+
+<view class="container">
+  <!-- === 冲突警告 === -->
+  <view wx:if="{{conflictNodes.length > 0}}" class="conflict-banner">
+    <text class="conflict-banner__icon">⚠️</text>
+    <text class="conflict-banner__text">检测到 {{conflictNodes.length}} 个节点与宝宝作息冲突</text>
+    <button class="conflict-banner__btn" bindtap="onAutoReschedule">一键重排</button>
+  </view>
+
+  <!-- === 时间轴行程 === -->
+  <view class="timeline tt-card">
+    <view class="timeline__header">
+      <text class="timeline__date">{{selectedDate}}</text>
+      <button class="add-node-btn" bindtap="onAddNode">+ 添加</button>
+    </view>
+
+    <view class="timeline__nodes">
+      <view wx:for="{{nodes}}" wx:key="id" class="node {{item.conflict_flag ? 'node--conflict' : ''}}">
+        <!-- 连接线 -->
+        <view class="node__connector" wx:if="{{index < nodes.length - 1}}"></view>
+
+        <!-- 时间窗 -->
+        <view class="node__time">
+          <text class="node__time-start">{{item.start_window_start}}</text>
+          <text class="node__time-end">~ {{item.start_window_end}}</text>
+        </view>
+
+        <!-- 节点主体 -->
+        <view class="node__body">
+          <view class="node__type-icon">
+            <text wx:if="{{item.node_type === 'travel'}}">🚗</text>
+            <text wx:if="{{item.node_type === 'activity'}}">🎯</text>
+            <text wx:if="{{item.node_type === 'feed'}}">🍼</text>
+            <text wx:if="{{item.node_type === 'nap'}}">😴</text>
+            <text wx:if="{{item.node_type === 'meal'}}">🍚</text>
+            <text wx:if="{{item.node_type === 'rest'}}">🛌</text>
+          </view>
+
+          <view class="node__content">
+            <text class="node__title">{{item.title}}</text>
+            <view wx:if="{{item.travel_time_min}}" class="node__meta">
+              <text>📍 {{item.distance_km}}km · 🚘 {{item.travel_time_min}}分钟</text>
+            </view>
+            <view class="node__conflict" wx:if="{{item.conflict_flag}}">
+              <text>⚠️ 与 {{item.conflict_details.baby}} 的 {{item.conflict_details.type === 'nap' ? 'nap' : '喂奶'}} ({{item.conflict_details.time}}) 冲突</text>
+            </view>
+          </view>
+
+          <view class="node__status">
+            <view wx:if="{{item.status === 'completed'}}" class="status-done">✅</view>
+            <view wx:elif="{{item.status === 'in_progress'}}" class="status-progress">🔄</view>
+            <view wx:elif="{{item.status === 'skipped'}}" class="status-skipped">⏭️</view>
+            <view wx:else class="status-pending">⬜</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- === 双娃作息参考 === -->
+  <view wx:if="{{babies.length > 0}}" class="routines tt-card">
+    <text class="routines__title">👶 宝宝今日作息（参考）</text>
+    <view wx:for="{{babies}}" wx:key="id" class="routine-row">
+      <text class="routine-row__name">{{item.name}}</text>
+      <text class="routine-row__schedule">6:30起床 · 8:00喂奶 · 11:00 nap · 12:00午饭 · 14:00 nap · 16:30加餐 · 18:00晚饭 · 20:00睡觉</text>
+    </view>
+  </view>
+
+  <view class="tt-safe-area-bottom"></view>
+</view>

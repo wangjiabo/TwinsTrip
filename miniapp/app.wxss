@@ -1,0 +1,87 @@
+/* app.wxss - TwinTrip 全局样式
+   设计理念：深色主题 + 战术指示色，体现"作战指挥系统"的质感
+*/
+
+page {
+  --tt-primary: #e94560;        /* 主题红 — 紧急/重要 */
+  --tt-secondary: #16213e;      /* 深蓝 */
+  --tt-dark: #1a1a2e;           /* 背景深蓝黑 */
+  --tt-accent: #0f3460;         /* 卡片 */
+  --tt-success: #2ecc71;        /* 绿 — 正常/完成 */
+  --tt-warning: #f39c12;        /* 黄 — 警告 */
+  --tt-danger: #e94560;         /* 红 — 紧急 */
+  --tt-info: #3498db;           /* 蓝 — 信息 */
+  --tt-text: #2c3e50;           /* 正文 */
+  --tt-text-light: #7f8c8d;     /* 辅助文字 */
+  --tt-bg: #f8f9fa;             /* 页面背景 */
+  --tt-card-bg: #ffffff;        /* 卡片背景 */
+  --tt-border: #ecf0f1;         /* 边框 */
+
+  background-color: var(--tt-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-size: 32rpx;
+  color: var(--tt-text);
+  line-height: 1.5;
+
+  /* 单手操作友好 — 最小触控区域 88rpx */
+}
+
+/* 通用卡片 */
+.tt-card {
+  background: var(--tt-card-bg);
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 紧急按钮 — 单手大按钮 */
+.tt-emergency-btn {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 状态点 */
+.tt-status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  display: inline-block;
+}
+.tt-status-dot--urgent { background: var(--tt-danger); animation: pulse 1.5s infinite; }
+.tt-status-dot--warn { background: var(--tt-warning); }
+.tt-status-dot--normal { background: var(--tt-success); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* 必须带标签 */
+.tt-mandatory-tag {
+  background: rgba(233, 69, 96, 0.1);
+  color: var(--tt-danger);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 必忘记警告 */
+.tt-forget-warn {
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border-left: 8rpx solid var(--tt-danger);
+  padding: 16rpx 24rpx;
+  border-radius: 8rpx;
+}
+
+/* 单手操作提示区 — 底部 120rpx 安全区外 */
+.tt-safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
