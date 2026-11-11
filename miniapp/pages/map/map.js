@@ -56,7 +56,7 @@ Page({
         this.calcNearestResource(res.latitude, res.longitude);
       },
       fail: (err) => {
-        console.warn('[TwinTrip] getLocation failed:', err);
+        console.warn('[TwinsTrip] getLocation failed:', err);
       }
     });
   },

@@ -18,12 +18,12 @@ interface ConnectedClient {
 const connectedClients: Map<string, ConnectedClient[]> = new Map();
 
 export function setupWebSocket(wss: WebSocketServer) {
-  console.log('[TwinTrip WSS] WebSocket server starting...');
+  console.log('[TwinsTrip WSS] WebSocket server starting...');
 
   wss.on('connection', (ws, req) => {
     const client = { ws, familyId: '', userId: '' };
 
-    console.log('[TwinTrip WSS] Client connected');
+    console.log('[TwinsTrip WSS] Client connected');
 
     // 1. 客户端先发送认证消息
     ws.on('message', (data) => {
@@ -41,7 +41,7 @@ export function setupWebSocket(wss: WebSocketServer) {
           connectedClients.get(client.familyId)!.push(client);
 
           ws.send(JSON.stringify({ type: 'auth_ok', userId: client.userId }));
-          console.log(`[TwinTrip WSS] User ${client.userId} joined family ${client.familyId}`);
+          console.log(`[TwinsTrip WSS] User ${client.userId} joined family ${client.familyId}`);
         }
 
         if (msg.type === 'baby_event') {
@@ -60,7 +60,7 @@ export function setupWebSocket(wss: WebSocketServer) {
           });
         }
       } catch (err) {
-        console.error('[TwinTrip WSS] Message parse error:', err);
+        console.error('[TwinsTrip WSS] Message parse error:', err);
       }
     });
 
@@ -70,7 +70,7 @@ export function setupWebSocket(wss: WebSocketServer) {
         const idx = familyClients.indexOf(client);
         if (idx > -1) familyClients.splice(idx, 1);
       }
-      console.log(`[TwinTrip WSS] User ${client.userId} disconnected`);
+      console.log(`[TwinsTrip WSS] User ${client.userId} disconnected`);
     });
   });
 
@@ -83,7 +83,7 @@ export function setupWebSocket(wss: WebSocketServer) {
     });
   }, 30000);
 
-  console.log('[TwinTrip WSS] WebSocket server ready on /ws');
+  console.log('[TwinsTrip WSS] WebSocket server ready on /ws');
 }
 
 function broadcastToFamily(familyId: string, message: any) {

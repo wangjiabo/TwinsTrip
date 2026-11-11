@@ -1,7 +1,7 @@
 {
   "name": "twintrip-server",
   "version": "0.1.0",
-  "description": "TwinTrip Backend API - 双胞胎带娃出游作战指挥系统后端",
+  "description": "TwinsTrip Backend API - 双胞胎带娃出游作战指挥系统后端",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

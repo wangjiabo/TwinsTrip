@@ -49,7 +49,7 @@ router.post('/:id/state', (req, res) => {
   }
 
   // TODO: 写入 DB + 通过 WebSocket 推送给另一端（爸爸/妈妈）
-  console.log(`[TwinTrip] Baby ${req.params.id} event: ${event} at ${timestamp || new Date().toISOString()}`);
+  console.log(`[TwinsTrip] Baby ${req.params.id} event: ${event} at ${timestamp || new Date().toISOString()}`);
 
   res.json({
     ok: true,

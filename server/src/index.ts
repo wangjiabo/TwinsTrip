@@ -1,5 +1,5 @@
 /**
- * TwinTrip Server — Main Entry Point
+ * TwinsTrip Server — Main Entry Point
  * Express + TypeScript backend for the 双胞胎带娃出游作战指挥系统
  */
 
@@ -36,7 +36,7 @@ app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'ok',
-    service: 'TwinTrip API',
+    service: 'TwinsTrip API',
     version: '0.1.0',
     timestamp: new Date().toISOString(),
   });
@@ -53,7 +53,7 @@ app.use('/api/map', mapRoutes);
 
 // === Error Handling ===
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error('[TwinTrip] Error:', err);
+  console.error('[TwinsTrip] Error:', err);
   res.status(500).json({
     error: 'Internal Server Error',
     message: process.env.NODE_ENV === 'production' ? 'Something went wrong' : err.message,
@@ -69,7 +69,7 @@ setupWebSocket(wss);
 server.listen(PORT, () => {
   console.log(`
 ╔═══════════════════════════════════════╗
-║        🛰️ TwinTrip Server            ║
+║        🛰️ TwinsTrip Server            ║
 ║   双胞胎带娃出游作战指挥系统 API       ║
 ╠═══════════════════════════════════════╣
 ║  HTTP:   http://localhost:${PORT}        ║

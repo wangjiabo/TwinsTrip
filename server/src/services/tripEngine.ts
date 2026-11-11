@@ -48,7 +48,7 @@ export function rescheduleTrip(input: RescheduleInput): RescheduleResult {
   const warnings: string[] = [];
   const conflicts: string[] = [];
 
-  console.log(`[TwinTrip TripEngine] Rescheduling trip ${tripId} with ${delayMinutes}min delay from node ${input.fromNodeId}`);
+  console.log(`[TwinsTrip TripEngine] Rescheduling trip ${tripId} with ${delayMinutes}min delay from node ${input.fromNodeId}`);
 
   // === Step 1: 基础重排 — 所有后续节点 start_time += delayMinutes ===
   // TODO: 实际从 DB 加载节点数据

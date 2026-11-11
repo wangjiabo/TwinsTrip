@@ -1,5 +1,5 @@
-// app.js - TwinTrip 微信小程序入口
-// TwinTrip: 双胞胎带娃出游作战指挥系统
+// app.js - TwinsTrip 微信小程序入口
+// TwinsTrip: 双胞胎带娃出游作战指挥系统
 
 App({
   globalData: {
@@ -46,11 +46,11 @@ App({
       success: (res) => {
         if (res.code) {
           // TODO: 发送 code 到后端换取 openid + JWT
-          console.log('[TwinTrip] wx.login code:', res.code);
+          console.log('[TwinsTrip] wx.login code:', res.code);
         }
       },
       fail: (err) => {
-        console.error('[TwinTrip] wx.login failed:', err);
+        console.error('[TwinsTrip] wx.login failed:', err);
       }
     });
   },
@@ -100,7 +100,7 @@ App({
 
   syncBabyStateToServer(babies) {
     // TODO: POST /api/babies/state
-    console.log('[TwinTrip] syncing babies state:', babies);
+    console.log('[TwinsTrip] syncing babies state:', babies);
   },
 
   // 计算紧急时间提醒

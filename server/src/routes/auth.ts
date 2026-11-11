@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
   // 2. 查找或创建用户
   // 3. 生成 JWT
 
-  console.log('[TwinTrip Auth] login with code:', code);
+  console.log('[TwinsTrip Auth] login with code:', code);
 
   res.json({
     token: 'dev-token-' + Date.now(),
